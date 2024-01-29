@@ -17,6 +17,8 @@
             include('main/tintuc.php');
         } else if ($tmp == 'lienhe') {
             include('main/lienhe.php');
+        } else if ($tmp == 'sanpham') {
+            include('main/sanpham.php');
         } else {
             include('main/index.php');
         }
