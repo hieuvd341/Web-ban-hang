@@ -12,7 +12,7 @@ $query_product = mysqli_query($mysqli, $sql_product);
 
         ?>
         <li>
-            <a href="index.php?quanly=sanpham&id=<?php echo $row_product['id_sanpham']            ?>">
+            <a href="index.php?quanly=sanpham&id=<?php echo $row_product['id_sanpham']?>">
                 <img src="admincp/modules/quanlysanpham/uploads/<?php echo $row_product['hinhanhsp'] ?>" >
                 <p class="title_product">Tên sản phẩm: <?php echo $row_product['tensp'] ?></p>
                 <p class="price">Giá: <?php echo number_format($row_product['giasp']) . " vnđ" ?></p>

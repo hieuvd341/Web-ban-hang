@@ -10,7 +10,7 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
             <img width=80% src="admincp/modules/quanlysanpham/uploads/<?php echo $row_chitiet['hinhanhsp'] ?>">
         </div>
 
-        <form method="POST" action="#">
+        <form method="POST" action="pages/main/themgiohang.php?idsanpham=<?php echo $row_chitiet['id_sanpham']?>">
             <div class="chitiet_sanpham">
                 <h3 style="margin:0">Tên sản phẩm:
                     <?php echo $row_chitiet['tensp'] ?>
@@ -27,7 +27,7 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                 <h3>Tên danh mục:
                     <?php echo $row_chitiet['tendanhmuc'] ?>
                 </h3>
-                <p> <input class="themgiohang" type="submit" value="Thêm vào giỏ hàng"></p>
+                <p> <input class="themgiohang" name="themgiohang" type="submit" value="Thêm vào giỏ hàng"></p>
 
         </form>
     </div>
