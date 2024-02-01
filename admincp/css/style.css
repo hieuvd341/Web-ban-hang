@@ -160,3 +160,23 @@ input.themgiohang {
     font-size: 15px;
     cursor: pointer;
 }
+
+.tongtien {
+    margin: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-style: oblique;
+    background-color: lightsalmon;
+    font-weight: bold;
+    cursor: pointer;
+}
+.xoatatca {
+    margin: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-style: oblique;
+    background-color: lightslategray;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}

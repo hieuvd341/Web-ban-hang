@@ -28,7 +28,6 @@ while ($row_chitiet = mysqli_fetch_array($query_chitiet)) {
                     <?php echo $row_chitiet['tendanhmuc'] ?>
                 </h3>
                 <p> <input class="themgiohang" name="themgiohang" type="submit" value="Thêm vào giỏ hàng"></p>
-
         </form>
     </div>
     </div>

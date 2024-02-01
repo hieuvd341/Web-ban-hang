@@ -2,9 +2,98 @@
 session_start();
 include("../../admincp/config/config.php");
 
+//xoatatca
+if (isset($_GET['xoatatca']) && $_GET['xoatatca'] == 1) {
+    unset($_SESSION['cart']);
+    // session_destroy();
+    header("Location:../../index.php?quanly=giohang");
+
+}
+if(isset($_SESSION['cart']) && isset($_GET['xoa'])){
+    $id = $_GET['xoa']; // Get the ID of the product to delete
+    $product = array(); // Initialize an empty array to hold the products you want to keep
+
+    foreach($_SESSION['cart'] as $cart_item) {
+        if($cart_item['id'] != $id) {
+            // If the current cart item is not the one to delete, add it to the $product array
+            $product[] = array(
+                "tensanpham" => $cart_item['tensanpham'],
+                "id" => $cart_item['id'],
+                "soluong" => $cart_item["soluong"],
+                "giasp" => $cart_item["giasp"],
+                "hinhanh" => $cart_item["hinhanh"],
+                "masp" => $cart_item["masp"],
+            );
+        }
+    }
+
+    // Update the session cart only once after the loop
+    $_SESSION['cart'] = $product;
+
+    // Redirect after the operation is complete
+    header("Location:../../index.php?quanly=giohang");
+    exit; // It's a good practice to call exit() after a header redirect to stop script execution
+}
 
 //them so luong
+if(isset($_SESSION["cart"]) && isset($_GET["cong"])) {
+    $id = $_GET["cong"];
+    foreach($_SESSION['cart'] as $cart_item) {
+        if($cart_item['id'] == $id &&  $cart_item["soluong"] < 10) {
+            // If the current cart item is not the one to delete, add it to the $product array
+            $product[] = array(
+                "tensanpham" => $cart_item['tensanpham'],
+                "id" => $cart_item['id'],
+                "soluong" => $cart_item["soluong"]+1,
+                "giasp" => $cart_item["giasp"],
+                "hinhanh" => $cart_item["hinhanh"],
+                "masp" => $cart_item["masp"],
+            );
+        } else {
+            $product[] = array(
+                "tensanpham" => $cart_item['tensanpham'],
+                "id" => $cart_item['id'],
+                "soluong" => $cart_item["soluong"],
+                "giasp" => $cart_item["giasp"],
+                "hinhanh" => $cart_item["hinhanh"],
+                "masp" => $cart_item["masp"],
+            );
+        }
+    }
+    $_SESSION['cart'] = $product;
+    header("Location:../../index.php?quanly=giohang");
+    exit; // It's a good practice to call exit() after a header redirect to stop script execution
+}
 //tru so luong
+if(isset($_SESSION["cart"]) && isset($_GET["tru"])) {
+    $id = $_GET["tru"];
+    foreach($_SESSION['cart'] as $cart_item) {
+        if($cart_item['id'] == $id) {
+            if($cart_item["soluong"] > 0) {
+                $product[] = array(
+                    "tensanpham" => $cart_item['tensanpham'],
+                    "id" => $cart_item['id'],
+                    "soluong" => $cart_item["soluong"]-1,
+                    "giasp" => $cart_item["giasp"],
+                    "hinhanh" => $cart_item["hinhanh"],
+                    "masp" => $cart_item["masp"],
+                );
+            } 
+        } else {
+            $product[] = array(
+                "tensanpham" => $cart_item['tensanpham'],
+                "id" => $cart_item['id'],
+                "soluong" => $cart_item["soluong"],
+                "giasp" => $cart_item["giasp"],
+                "hinhanh" => $cart_item["hinhanh"],
+                "masp" => $cart_item["masp"],
+            );
+        }
+    }
+    $_SESSION['cart'] = $product;
+    header("Location:../../index.php?quanly=giohang");
+    exit; // It's a good practice to call exit() after a header redirect to stop script execution
+}
 //them san pham vao gio hang
 if (isset($_POST['themgiohang'])) {
     $id = $_GET['idsanpham'];
@@ -24,9 +113,9 @@ if (isset($_POST['themgiohang'])) {
             )
         );
         // kiem tra session gio hang ton tai chua
-        if (isset($_SESSION['cart'])) {
+        if (isset($_SESSION['cart']) && count($_SESSION['cart']) != 0) {
             $found = false;
-            foreach ($_SESSION['cart'] as $cart_item) {
+            foreach($_SESSION['cart'] as $cart_item) {
                 if ($cart_item['id'] == $id) {
                     $product[] = array(
                         "tensanpham" => $cart_item['tensanpham'],
@@ -37,8 +126,7 @@ if (isset($_POST['themgiohang'])) {
                         "masp" => $cart_item["masp"],
                     );
                     $found = true;
-                } 
-                else {
+                } else {
                     // nếu dữ liệu không trùng
                     $product[] = array(
                         "tensanpham" => $cart_item['tensanpham'],
@@ -50,9 +138,10 @@ if (isset($_POST['themgiohang'])) {
                     );
                 }
             }
+
             if ($found == false) {
                 $_SESSION['cart'] = array_merge($product, $new_product);
-            } else{
+            } else {
                 $_SESSION['cart'] = $product;
             }
 
