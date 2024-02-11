@@ -19,6 +19,14 @@
             include('main/lienhe.php');
         } else if ($tmp == 'sanpham') {
             include('main/sanpham.php');
+        }else if ($tmp == 'dangky') {
+            include('main/dangky.php');
+        }else if ($tmp == 'dangnhap') {
+            include('main/dangnhap.php');
+        }else if ($tmp == 'timkiem') {
+            include('main/timkiem.php');
+        }else if ($tmp == 'camon') {
+            include('main/thankyou.php');
         } else {
             include('main/index.php');
         }

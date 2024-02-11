@@ -1,7 +1,6 @@
 <?php
-session_start();
 include("../../admincp/config/config.php");
-
+session_start();
 //xoatatca
 if (isset($_GET['xoatatca']) && $_GET['xoatatca'] == 1) {
     unset($_SESSION['cart']);

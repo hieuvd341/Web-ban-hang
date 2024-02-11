@@ -1,3 +1,18 @@
+<?php
+session_start();
+if(isset($_GET["action"]) && $_GET['action']=='dangxuat'){
+unset($_SESSION["dangnhap"]);
+header("Location:login.php");
+}
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 

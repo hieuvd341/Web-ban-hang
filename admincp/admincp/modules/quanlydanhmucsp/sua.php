@@ -8,7 +8,6 @@ $query_sua_danhmucsanpham = mysqli_query($mysqli, $sql_sua_danhmucsanpham);
     <table border="1" width="50%" style="border-collapse: collapse">
         <?php
         while ($dong = mysqli_fetch_array($query_sua_danhmucsanpham)) {
-
             ?>
             <tr>
                 <td>Tên danh mục</td>
