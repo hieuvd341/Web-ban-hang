@@ -92,44 +92,47 @@ ul.list_sidebar li:hover {
     background: rgb(186, 116, 24);
 }
 ul.product_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the minmax values based on your preference */
+    grid-gap: 15px; /* Space between items */
+    list-style: none;
     padding: 0;
     margin: 0;
-    list-style: none;
 }
 ul.product_list li {
-    margin: 7px;
-    width: 23%;
-    border: solid;
-    float: left;
-    height: 308px;
+    border: 1px solid #ddd; /* A light border for each product */
+    margin: 0; /* Removed margin to handle spacing with grid-gap */
+    height: auto; /* Height will be determined by content */
+}
+ul.product_list li:hover {
+    transform: translateY(-5px); /* Move the product card up slightly on hover */
 }
 ul.product_list li img {
-    width: 100%;
-    height: 100%;
+    width: 100%; /* Full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the area without stretching */
 }
+
 .product_list a {
     text-decoration: none;
     color: #0058ff;
 }
 .title_product {
-    text-align: center;
-    text-decoration: none;
-    color: #0058ff;
-    font-weight: 200;
+    color: #333;    
+    font-size: 1.1em;   
+    margin-bottom: 10px;    
 }
 .price {
-    text-align: center;
-    text-decoration: none;
     color: #0058ff;
-    font-weight: 300;
+    font-weight: bold;
 }
 
-.footer{
-    border: 1px solid #ee82ee;
-    height: 50px;
-    width: 100%;
-    background-color: rgb(103, 198, 209);
-
+.footer {
+    background-color: #333; /* Dark background for the footer */
+    color: white; /* Light text color for contrast */
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8em;
 }
 .footer_copyright{
     text-align: center;
@@ -154,12 +157,19 @@ ul.product_list li img {
 
 }
 .themgiohang {
+    background-color: #4CAF50; /* A nice green */
+    color: white;
+    padding: 10px 20px;
     border: none;
-    background: lightgreen;
-    padding: 12px;
-    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     cursor: pointer;
+    border-radius: 5px; /* Rounded corners for the button */
 }
+
 
 .tongtien {
     margin: 5px;
