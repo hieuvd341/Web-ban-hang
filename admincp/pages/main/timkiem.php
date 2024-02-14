@@ -1,7 +1,6 @@
 <?php
 if (isset($_POST['timkiem'])) {
     $tukhoa = $_POST['tukhoa'];
-    // Use a prepared statement to prevent SQL injection
     $sql_product = "SELECT tbl_sanpham.*, tbl_danhmuc.tendanhmuc FROM tbl_sanpham 
                     LEFT JOIN tbl_danhmuc ON tbl_sanpham.id_danhmucsp = tbl_danhmuc.id_danhmuc 
                     WHERE tbl_sanpham.tensp LIKE ?";
