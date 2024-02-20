@@ -20,6 +20,7 @@ if (isset($_POST['dangnhap'])) {
                 $_SESSION['dangnhap_khachhang'] = $row['email'];
                 $_SESSION['id_khachhang'] = $row['id_dangky'];
                 header('Location:index.php');
+                unset($_SESSION['cart']);
                 exit();
             } else {
                 echo '<p style="color:red">Email hoặc mật khẩu không đúng, vui lòng nhập lại.</p>';

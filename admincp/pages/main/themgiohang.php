@@ -61,7 +61,7 @@ if(isset($_SESSION["cart"]) && isset($_GET["cong"])) {
     }
     $_SESSION['cart'] = $product;
     header("Location:../../index.php?quanly=giohang");
-    exit; // It's a good practice to call exit() after a header redirect to stop script execution
+    exit; 
 }
 //tru so luong
 if(isset($_SESSION["cart"]) && isset($_GET["tru"])) {
@@ -115,16 +115,28 @@ if (isset($_POST['themgiohang'])) {
         if (isset($_SESSION['cart']) && count($_SESSION['cart']) != 0) {
             $found = false;
             foreach($_SESSION['cart'] as $cart_item) {
-                if ($cart_item['id'] == $id) {
-                    $product[] = array(
-                        "tensanpham" => $cart_item['tensanpham'],
-                        "id" => $cart_item['id'],
-                        "soluong" => $cart_item["soluong"] + 1,
-                        "giasp" => $cart_item["giasp"],
-                        "hinhanh" => $cart_item["hinhanh"],
-                        "masp" => $cart_item["masp"],
-                    );
+                if ($cart_item['id'] == $id ) {
+                    if($cart_item["soluong"] < 10) {
+                        $product[] = array(
+                            "tensanpham" => $cart_item['tensanpham'],
+                            "id" => $cart_item['id'],
+                            "soluong" => $cart_item["soluong"] + 1,
+                            "giasp" => $cart_item["giasp"],
+                            "hinhanh" => $cart_item["hinhanh"],
+                            "masp" => $cart_item["masp"],
+                        );
+                    } else {
+                        $product[] = array(
+                            "tensanpham" => $cart_item['tensanpham'],
+                            "id" => $cart_item['id'],
+                            "soluong" => 10,
+                            "giasp" => $cart_item["giasp"],
+                            "hinhanh" => $cart_item["hinhanh"],
+                            "masp" => $cart_item["masp"],
+                        );
+                    }
                     $found = true;
+
                 } else {
                     // nếu dữ liệu không trùng
                     $product[] = array(

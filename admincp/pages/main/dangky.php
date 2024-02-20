@@ -8,23 +8,30 @@ if (isset($_POST["dangky"])) {
 
     $sql_dangky = "INSERT INTO tbl_dangky(tenkhachhang, email, diachi, matkhau, dienthoai) VALUES (?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql_dangky);
-
-    if ($stmt) {
-        $stmt->bind_param("ssssi", $tenkhachhang, $email, $diachi, $matkhau, $dienthoai);
-        $query_dangky = $stmt->execute();
-
-        if ($query_dangky) {
-            echo "<p style='color:green'>Bạn đã đăng ký thành công</p>";
-            $_SESSION['id_khachhang'] = mysqli_insert_id($mysqli);
-            $_SESSION['dangnhap_khachhang'] = $email;
-            header('Location:index.php?quanly=giohang');
-        } else {
-            echo "<p style='color:red'>Đăng ký không thành công</p>";
-        }
-        $stmt->close();
+    $sql_check = "SELECT * FROM tbl_dangky WHERE tbl_dangky.email='$email'";
+    $query_check = mysqli_query($mysqli, $sql_check);  
+    if (mysqli_fetch_all($query_check)) {
+        echo "<p style='color:red'>Tài khoản đã tồn tại.</p>";
     } else {
-        echo "<p style='color:red'>Có lỗi xảy ra</p>";
+        if ($stmt) {
+            $stmt->bind_param("ssssi", $tenkhachhang, $email, $diachi, $matkhau, $dienthoai);
+            $query_dangky = $stmt->execute();
+
+            if ($query_dangky) {
+                echo "<p style='color:green'>Bạn đã đăng ký thành công</p>";
+                $_SESSION['id_khachhang'] = mysqli_insert_id($mysqli);
+                $_SESSION['dangnhap_khachhang'] = $email;
+                header('Location:index.php?quanly=giohang');
+                unset($_SESSION['cart']);
+            } else {
+                echo "<p style='color:red'>Đăng ký không thành công</p>";
+            }
+            $stmt->close();
+        } else {
+            echo "<p style='color:red'>Có lỗi xảy ra</p>";
+        }
     }
+
 }
 ?>
 

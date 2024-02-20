@@ -20,6 +20,12 @@
     } else if ($tmp == "quanlysanpham" && $query == 'sua') {
         include("modules/quanlysanpham/sua.php");
     } 
+    if ($tmp == "quanlyuser" && $query == 'them') {
+        include("modules/quanlyuser/them.php");
+        include("modules/quanlyuser/lietke.php");
+    } else if ($tmp == "quanlyuser" && $query == 'sua') {
+        include("modules/quanlyuser/sua.php");
+    } 
     
     
     

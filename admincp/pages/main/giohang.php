@@ -1,11 +1,3 @@
-<?php
-    if(isset($_SESSION['cart'])) {
-        echo '<pre>';
-        print_r($_SESSION['cart']);
-        echo '</pre>';
-    }
-
- ?>
 <h3>Giỏ hàng
 
 <?php
