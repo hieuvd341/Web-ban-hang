@@ -1,0 +1,11 @@
+.wrapper{
+    border: 1px solid #002;
+    height: auto;
+    width: 90%;
+    margin: 0 auto;
+
+}
+.container {
+    border: aqua;
+    background: aqua;
+}
